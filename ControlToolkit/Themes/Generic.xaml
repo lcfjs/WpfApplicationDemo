@@ -1,0 +1,11 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ControlToolkit">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/ControlToolkit;component/Themes/Loading.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/ControlToolkit;component/Themes/BasicWindow.xaml"/>
+        <!--<ResourceDictionary Source="BasicWindow.xaml"/>-->
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

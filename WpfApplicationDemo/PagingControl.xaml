@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="WpfApplicationDemo.PagingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApplicationDemo"
+             mc:Ignorable="d" 
+             >
+    <Grid Height="33">
+        <DockPanel>
+            <TextBlock Text="共" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=TotalRow,RelativeSource={RelativeSource AncestorType={x:Type local:PagingControl}}}"  VerticalAlignment="Center" Margin="3,0,3,0"/>
+            <TextBlock Text="条数据" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+
+            <TextBlock Text="第" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=CurrentPage,RelativeSource={RelativeSource AncestorType={x:Type local:PagingControl}}}"  VerticalAlignment="Center" Margin="3,0,3,0"/>
+            <TextBlock Text="页" VerticalAlignment="Center"/>
+
+            <TextBlock Text="/共" VerticalAlignment="Center"/>
+            <TextBlock Name="labTotalPage" Text="0"  VerticalAlignment="Center" Margin="3,0,3,0"/>
+            <TextBlock Text="页" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+
+            <Border Name="pageFirst" Background="SkyBlue" CornerRadius="3" Margin="0,3,5,3" Padding="5,3,5,3" VerticalAlignment="Center" BorderThickness="1" BorderBrush="SkyBlue" MouseDown="Page_MouseDown">
+                <TextBlock Text="首页"/>
+            </Border>
+            <Border Name="pagePrev" Background="SkyBlue" CornerRadius="3" Margin="0,3,5,3" Padding="5,3,5,3" VerticalAlignment="Center" MouseDown="Page_MouseDown">
+                <TextBlock Text="上一页"/>
+            </Border>
+            <Border Name="pageNext" Background="SkyBlue" CornerRadius="3" Margin="0,3,5,3" Padding="5,3,5,3" VerticalAlignment="Center" MouseDown="Page_MouseDown">
+                <TextBlock Text="下一页"/>
+            </Border>
+            <Border Name="pageLast" Background="SkyBlue" CornerRadius="3" Margin="0,3,5,3" Padding="5,3,5,3" VerticalAlignment="Center" MouseDown="Page_MouseDown">
+                <TextBlock Text="尾页"/>
+            </Border>
+
+
+            <TextBlock Text="每页" VerticalAlignment="Center"/>
+            <ComboBox Name="comPageSize" VerticalAlignment="Center" Margin="3,0,3,0" Width="40" Text="{Binding Path=PageSize,RelativeSource={RelativeSource AncestorType={x:Type local:PagingControl}}}" DropDownClosed="comPageSize_DropDownClosed" SelectionChanged="comPageSize_SelectionChanged">
+                <ComboBoxItem>10</ComboBoxItem>
+                <ComboBoxItem Selector.IsSelected="True">20</ComboBoxItem>
+                <ComboBoxItem>30</ComboBoxItem>
+                <ComboBoxItem>50</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="条" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+            <TextBlock Name="labJump" Foreground="Blue" Cursor="Hand" VerticalAlignment="Center" MouseDown="labJump_MouseDown">
+                <Run Text="跳转" TextDecorations="Underline"/>
+            </TextBlock>
+            <TextBlock Text="至" VerticalAlignment="Center"/>
+            <TextBox Name="txtJump" Text="" MinWidth="30" Height="22" VerticalAlignment="Center" Margin="3,0,3,0" KeyDown="txtJump_KeyDown"/>
+            <TextBlock Text="页" VerticalAlignment="Center"/>
+        </DockPanel>
+    </Grid>
+</UserControl>
