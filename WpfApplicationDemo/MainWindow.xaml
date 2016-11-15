@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApplicationDemo"
         xmlns:ControlToolkit="clr-namespace:ControlToolkit;assembly=ControlToolkit" x:Class="WpfApplicationDemo.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="700" Loaded="Window_Loaded">
+        Title="MainWindow" Height="496" Width="774" Loaded="Window_Loaded">
     <Grid>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="115,40,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" MaxDropDownHeight="100" Margin="115,83,0,0" VerticalAlignment="Top" Width="120" Style="{StaticResource ComboBoxStyle}">
@@ -116,7 +116,7 @@
             </Rectangle.Fill>
 
         </Rectangle>
-        <DockPanel x:Name="window_minimize"  Margin="280,183,226,52">
+        <DockPanel x:Name="window_minimize"  Margin="300,305,226,52">
             <Border Background="AntiqueWhite" Width="40" Height="40">
                 <Path x:Name="path_window_minimize" Width="25" Height="8" Stretch="Fill" Fill="SkyBlue" Data="F1M0,6L0,9 9,9 9,6 0,6z"/>
             </Border>
@@ -134,18 +134,19 @@
 
         </DockPanel>
 
-        <Border  BorderBrush="SkyBlue" BorderThickness="1 2 1 2" Margin="175,165,417,105">
+        <Border  BorderBrush="SkyBlue" BorderThickness="1 2 1 2" Margin="175,165,461,196">
             <Grid Background="Transparent" Width="100" Height="50"  ShowGridLines="True">
-            <Grid.RowDefinitions>
-                <RowDefinition MinHeight="10"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition MinHeight="20"/>
-            </Grid.RowDefinitions><GridSplitter Grid.Row="1" Grid.RowSpan="1" Height="2" HorizontalAlignment="Stretch" ShowsPreview="False" Background="SkyBlue" Foreground="Red" Margin="0 5 0 5"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition MinHeight="20"/>
+                </Grid.RowDefinitions>
+                <GridSplitter Grid.Row="1" Grid.RowSpan="1" Height="2" HorizontalAlignment="Stretch" ShowsPreview="False" Background="SkyBlue" Foreground="Red" Margin="0 5 0 5"/>
 
             </Grid>
         </Border>
 
 
-        
+
     </Grid>
 </Window>
