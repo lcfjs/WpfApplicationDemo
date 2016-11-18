@@ -37,8 +37,24 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\Lib\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,7 +72,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Comm\InvokeCommandActionEx.cs" />
+    <Compile Include="Comm\RelayCommand.cs" />
+    <Compile Include="Comm\WindowBehaviorHelper.cs" />
     <Compile Include="Loading.cs" />
+    <Compile Include="MyEventRouteButton.cs" />
     <Compile Include="PagingControl.xaml.cs">
       <DependentUpon>PagingControl.xaml</DependentUpon>
     </Compile>
@@ -133,11 +153,22 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{7478b2d1-bb6f-46ef-9728-1c94639eface}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ControlToolkit\ControlToolkit.csproj">
       <Project>{ac96083a-ec03-4521-a963-0dbf45ba287b}</Project>
       <Name>ControlToolkit</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Images\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\1.jpg" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

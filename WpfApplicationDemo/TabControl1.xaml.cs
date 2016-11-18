@@ -32,6 +32,10 @@ namespace WpfApplicationDemo
                 lab.Text = DateTime.Now + new string('-', 10 + r.Next(52));
                 panelContent.Children.Add(lab);
             }
+
+
+            
+
         }
     }
 }

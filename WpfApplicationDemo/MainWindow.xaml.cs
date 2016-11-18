@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace WpfApplicationDemo
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -65,6 +67,17 @@ namespace WpfApplicationDemo
             pageControl.OnPageChangedEvent += (pageIndex) => {
                 dgData.ItemsSource = list.Skip(pageControl.PageSize*(pageIndex - 1)).Take(pageControl.PageSize).ToList();
             };
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
 
         private void ChangeVal( Test val)
@@ -96,5 +109,59 @@ namespace WpfApplicationDemo
         {
             Console.WriteLine("btnVisual_Click");
         }
+
+
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show((sender as FrameworkElement).Name);
+        }
+        
+
+        private void btnRoute_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("btnRoute_Click:"+ (sender as FrameworkElement).Name);
+        }
+
+        private void localMR_NewClick(object sender, MyEventArgs e)
+        {
+            e.Tag = (sender as FrameworkElement).Name;
+            System.Windows.Forms.MessageBox.Show((sender as FrameworkElement).Name);
+
+        }
+
+        private void localMR_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //System.Windows.Forms.MessageBox.Show("Test");
+            DragDrop.DoDragDrop(localMR, localMR.Content, DragDropEffects.Copy);
+            e.Handled = true;
+
+
+            //CheckBox chk = new CheckBox();
+            var w = App.Current.MainWindow;
+            pInfo.IsOpen = true;
+        }
+
+        #region Command Test
+
+        //1.
+        public ICommand ButtonMouseDown { get { return new DelegateCommand<object>((parameter)=> { ButtonMouseDownMethod(parameter); }); } }
+
+        private void ButtonMouseDownMethod(object parameter)
+        {
+            //CommandParameterEx
+            System.Windows.Forms.MessageBox.Show(parameter+""); 
+            //System.Windows.Forms.MessageBox.Show((parameter.Sender as FrameworkElement).Name+"");
+        }
+
+        //2.
+
+        public RelayCommand ButtonMouseDown2 { get { return new RelayCommand((parameter) => { BMDMethod2(parameter); }); } }
+
+        private void BMDMethod2(object parameter)
+        {
+            System.Windows.Forms.MessageBox.Show(parameter + "");
+        }
+        #endregion
     }
 }

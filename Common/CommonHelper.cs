@@ -109,21 +109,21 @@ namespace Common
         /// </summary>
         /// <param name="bmp"></param>
         /// <returns></returns>
-        public static BitmapSource ToBitmapSource(System.Drawing.Bitmap bmp)
-        {
-            IntPtr ptr = bmp.GetHbitmap();
+        //public static BitmapSource ToBitmapSource(System.Drawing.Bitmap bmp)
+        //{
+        //    IntPtr ptr = bmp.GetHbitmap();
 
-            BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                ptr,
-                IntPtr.Zero,
-                Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions());
+        //    BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+        //        ptr,
+        //        IntPtr.Zero,
+        //        Int32Rect.Empty,
+        //        BitmapSizeOptions.FromEmptyOptions());
 
-            bmp.Dispose();
+        //    bmp.Dispose();
 
-            DeleteObject(ptr); // 释放内存，否则内存泄露
-            return bs;
-        }
+        //    DeleteObject(ptr); // 释放内存，否则内存泄露
+        //    return bs;
+        //}
 
         #region 配置文件
         /// <summary>

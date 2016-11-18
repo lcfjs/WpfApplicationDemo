@@ -109,8 +109,10 @@
                                 <Run TextDecorations="Underline">这是</Run>
                                 <Italic>Tab1</Italic>
                                 <Hyperlink NavigateUri="www.baidu.com">www.baidu.com</Hyperlink>
+
                             </TextBlock.Inlines>
                         </TextBlock>
+                        
                     </DockPanel>
                 </TabItem>
 
@@ -118,7 +120,7 @@
                     <DockPanel>
                         <TextBlock>this is tab2!</TextBlock>
 
-                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <ScrollViewer Name="svCtl" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <StackPanel Name="panelContent">
 
                             </StackPanel>
@@ -129,9 +131,18 @@
                 <TabItem Header="Tab &amp; 3">
                     <Border BorderThickness="1" BorderBrush="SkyBlue" CornerRadius="3">
                         <StackPanel>
-
                             <TextBlock Text="tab3!!!"/>
                             <CheckBox Content="是否选中"/>
+
+                            <Expander>
+                                <Expander.Header>
+                                    <TextBlock>Expander</TextBlock>
+                                </Expander.Header>
+                                <DockPanel>
+
+                                    <CheckBox Content="你点我试试" FocusVisualStyle="{x:Null}"/>
+                                </DockPanel>
+                            </Expander>
                         </StackPanel>
                     </Border>
                 </TabItem>
