@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style.xaml"/>
                 <ResourceDictionary Source="Style/DataGridStyle.xaml"/>
+                <ResourceDictionary Source="Style/SwitchStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

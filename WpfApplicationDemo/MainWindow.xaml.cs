@@ -142,26 +142,53 @@ namespace WpfApplicationDemo
             pInfo.IsOpen = true;
         }
 
+
         #region Command Test
 
         //1.
-        public ICommand ButtonMouseDown { get { return new DelegateCommand<object>((parameter)=> { ButtonMouseDownMethod(parameter); }); } }
+        public ICommand ButtonMouseDown { get { return new DelegateCommand<CommandParameterEx>((parameter)=> { ButtonMouseDownMethod(parameter); }); } }
 
-        private void ButtonMouseDownMethod(object parameter)
+        private void ButtonMouseDownMethod(CommandParameterEx parameter)
         {
-            //CommandParameterEx
-            System.Windows.Forms.MessageBox.Show(parameter+""); 
+            var btn = parameter.Sender as Button;
+            btn.Content = " woow";
+            //
+            System.Windows.Forms.MessageBox.Show(parameter+"");
+
+            //System.Windows.Forms.MessageBox.Show(SystemParameters.FullPrimaryScreenHeight + ","+ SystemParameters.PrimaryScreenHeight+","+ SystemParameters.WorkArea.Height);
             //System.Windows.Forms.MessageBox.Show((parameter.Sender as FrameworkElement).Name+"");
         }
 
         //2.
-
         public RelayCommand ButtonMouseDown2 { get { return new RelayCommand((parameter) => { BMDMethod2(parameter); }); } }
 
         private void BMDMethod2(object parameter)
         {
             System.Windows.Forms.MessageBox.Show(parameter + "");
+            
         }
+
+
         #endregion
+
+        private void chkKeyboardC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key== Key.Y && e.KeyboardDevice.Modifiers== ModifierKeys.Control)
+            {
+                chkKeyboardC.IsChecked = !chkKeyboardC.IsChecked;
+            }
+
+
+        }
+
+        private void chkSlider_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnWindow1_Click(object sender, RoutedEventArgs e)
+        {
+            new Window1().ShowDialog();
+        }
     }
 }

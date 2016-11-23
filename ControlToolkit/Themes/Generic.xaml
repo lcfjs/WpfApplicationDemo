@@ -6,6 +6,9 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/ControlToolkit;component/Themes/Loading.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/ControlToolkit;component/Themes/BasicWindow.xaml"/>
-        <!--<ResourceDictionary Source="BasicWindow.xaml"/>-->
+        <ResourceDictionary Source="pack://application:,,,/ControlToolkit;component/Themes/Transition.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+
+    
 </ResourceDictionary>
