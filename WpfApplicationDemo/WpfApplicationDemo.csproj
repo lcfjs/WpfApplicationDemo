@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Comm\InvokeCommandActionEx.cs" />
+    <Compile Include="Comm\NativeMethods.cs" />
     <Compile Include="Comm\RelayCommand.cs" />
     <Compile Include="Comm\WindowBehaviorHelper.cs" />
     <Compile Include="ControlAttachProperty.cs" />

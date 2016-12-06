@@ -10,7 +10,7 @@ using System.Windows.Interop;
 namespace WpfApplicationDemo
 {
     /// <summary>
-    /// 窗体行为帮助类
+    /// 窗体行为帮助类,最大化窗体时不遮住任务栏(在窗体构造函数中初始化)
     /// </summary>
     public class WindowBehaviorHelper
     {
@@ -82,7 +82,7 @@ namespace WpfApplicationDemo
         #endregion
 
         /// <summary>
-        /// 设置窗口大小范围控制
+        /// 设置窗口大小范围控制(该方法可不调用)
         /// </summary>
         /// <param name="MaxWidth">最大宽度 小于等于0不进行设置</param>
         /// <param name="MinWidth">最小宽度 小于等于0不进行设置</param>

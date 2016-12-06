@@ -25,6 +25,10 @@ namespace WpfApplicationDemo
         {
             InitializeComponent();
             this.DataContext = this;
+
+            //WindowBehaviorHelper w = new WindowBehaviorHelper(this);
+            //w.RepairBehavior();
+
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
