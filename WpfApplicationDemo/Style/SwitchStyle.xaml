@@ -10,13 +10,15 @@
                         <Ellipse Name="BTN" Width="39" Height="39" Fill="#BBFFAA" HorizontalAlignment="Left" Margin="1,0,1,0"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="true">
+                        <!--<Trigger Property="IsChecked" Value="true">
                             <Setter Property="Background" TargetName="BG" Value="SkyBlue"/>
-                        </Trigger>
+                        </Trigger>-->
                         <EventTrigger RoutedEvent="Checked">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ThicknessAnimation From="0 0 1 0" To="100 0 1 0" Duration="0:0:0.3" Storyboard.TargetName="BTN" Storyboard.TargetProperty="Margin"/>
+                                    <ThicknessAnimation From="1 0 1 0" To="100 0 1 0" Duration="0:0:0.3" Storyboard.TargetName="BTN" Storyboard.TargetProperty="Margin"/>
+
+                                    <ColorAnimation To="SkyBlue" Duration="0:0:0.3" Storyboard.TargetName="BG" Storyboard.TargetProperty="Background.Color"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -24,6 +26,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ThicknessAnimation From="100 0 1 0" To="1 0 1 0" Duration="0:0:0.3" Storyboard.TargetName="BTN" Storyboard.TargetProperty="Margin"/>
+                                    <ColorAnimation To="Silver" Duration="0:0:0.3" Storyboard.TargetName="BG" Storyboard.TargetProperty="Background.Color"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:WpfApplicationDemo"
         xmlns:ControlToolkit="clr-namespace:ControlToolkit;assembly=ControlToolkit" x:Class="WpfApplicationDemo.Window1"
         mc:Ignorable="d"
-        Title="Window1" Height="500" Width="900">
+        Title="Window1" Height="500" Width="900" >
     <Grid>
+        <!--<Path Data="M0 0 10 20 S20 50 10 80 50 120 60 200 20 500 150 450 400 500 620 400 600 300 720 110 700 200 810 20  z" Fill="White" Stroke="Black" StrokeThickness="1"></Path>-->
         <StackPanel>
             <DockPanel>
                 <Image Name="imgOriginal" Source="Images/start.png" Width="100" Height="50" MouseMove="Image_MouseMove"/>
 
                 <DockPanel Width="100" Height="100">
                     <DockPanel.Background>
-                        <ImageBrush x:Name="ib" ImageSource="Images/start.png" Viewbox="0.2 0.25 0.4 0.5"/>
+                        <ImageBrush x:Name="ib" ImageSource="Images/start.png" Viewbox="0 0 1 1"/>
                     </DockPanel.Background>
                 </DockPanel>
                 <Path Fill="AntiqueWhite" Margin="10 0 0 0">
@@ -74,9 +75,18 @@
 
 
                 <ControlToolkit:Transition x:Name="ctkTran" Width="180" Height="20" Background="SkyBlue"/>
-                <ControlToolkit:CustomRender/>
 
-
+                <Line X1="10" Y1="50" X2="170" Y2="50" Stroke="Red" StrokeDashArray="160 160" StrokeDashOffset="160" >
+                    <Line.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard RepeatBehavior="Forever">
+                                    <DoubleAnimation To="0" Duration="0:0:3" Storyboard.TargetProperty="StrokeDashOffset"></DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Line.Triggers>
+                </Line>
 
             </DockPanel>
             <TextBlock Text="this is textblock!"/>
@@ -93,6 +103,69 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
+
+            <DockPanel Height="100">
+                <StackPanel Width="150">
+                    
+                <PasswordBox Name="txtPassword" Width="120" Height="23" >
+                    <PasswordBox.Style>
+                        <Style TargetType="{x:Type PasswordBox}">
+                            <Style.Triggers>
+                                
+                                
+                            </Style.Triggers>
+                        </Style>
+                    </PasswordBox.Style>
+                </PasswordBox>
+                
+                <TextBox Width="120" Height="23" TextWrapping="Wrap" Text="{Binding Path=Text,ElementName=txtWatermark}"></TextBox>
+
+                <TextBox x:Name="txtWatermark" local:ControlAttachProperty.Watermark="输入点东西吧" HorizontalAlignment="Left" Height="25" Margin="20,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Grid>
+                                            <Border BorderThickness="1 1.5 1 1" BorderBrush="Silver" CornerRadius="3"></Border>
+                                            <TextBlock Name="LabWatermark" Text="{TemplateBinding local:ControlAttachProperty.Watermark}" Visibility="Collapsed" Background="Transparent" Foreground="Silver" Padding="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" >
+                                            </ScrollViewer>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <!--<Condition Property="IsFocused" Value="False"/>-->
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Visibility" TargetName="LabWatermark" Value="Visible"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <ListView Name="lvData" Width="150">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Name" Width="80" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate DataType="CheckBox">
+                                            <CheckBox Content="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+
         </StackPanel>
     </Grid>
 </Window>

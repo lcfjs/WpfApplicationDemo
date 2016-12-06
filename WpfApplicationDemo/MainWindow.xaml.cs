@@ -188,7 +188,12 @@ namespace WpfApplicationDemo
 
         private void btnWindow1_Click(object sender, RoutedEventArgs e)
         {
-            new Window1().ShowDialog();
+            new Window1().Show();
+        }
+
+        private void ThumbButtonInfo_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("Test");
         }
     }
 }
