@@ -4,14 +4,15 @@
     <Style TargetType="ToggleButton" x:Key="ComboxStyleBtn">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border x:Name="Back" Background="#F7FDF7" BorderThickness="1" BorderBrush="Transparent">
-                        <Path Name="PathFill" Fill="#59CA4F" Width="8" Height="6" StrokeThickness="0" Data="M5,0 L10,10 L0,10 z" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                        <!--59CA4F-->
+                        <Path Name="PathFill" Fill="SkyBlue" Width="8" Height="6" StrokeThickness="0" Data="M0,0 L5,10 L10,0 z" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
                                     <SkewTransform/>
-                                    <RotateTransform Angle="180"/>
+                                    <RotateTransform x:Name="rtBTN" Angle="0"/>
                                     <TranslateTransform/>
                                 </TransformGroup>
                             </Path.RenderTransform>
@@ -20,8 +21,24 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="PathFill" Property="Fill" Value="White"></Setter>
-                            <Setter TargetName="Back" Property="Background" Value="#59CA4F"></Setter>
-                            <Setter TargetName="Back" Property="BorderBrush" Value="#59CA4F"></Setter>
+                            <Setter TargetName="Back" Property="Background" Value="SkyBlue"></Setter>
+                            <Setter TargetName="Back" Property="BorderBrush" Value="SkyBlue"></Setter>
+                        </Trigger>
+                    <Trigger Property="IsChecked" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="180" Storyboard.TargetName="rtBTN" Storyboard.TargetProperty="Angle" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="0" Storyboard.TargetName="rtBTN" Storyboard.TargetProperty="Angle" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -65,25 +82,201 @@
                             <ColumnDefinition Width="0.7*"/>
                             <ColumnDefinition Width="0.3*" MaxWidth="30"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox  Grid.Column="0" IsReadOnly="{TemplateBinding IsReadOnly}" Text="{TemplateBinding Text}"></TextBox>
-                        <Border  Grid.Column="0" BorderThickness="1,1,0,1" BorderBrush="#81D779" CornerRadius="1,0,0,1">
+                        <TextBox  x:Name="PART_EditableTextBox" Grid.Column="0" IsReadOnly="{TemplateBinding IsReadOnly}" Text="{TemplateBinding Text}"/>
+                        <Border  Grid.Column="0" BorderThickness="1,1,0,1" BorderBrush="#81D779" CornerRadius="1,0,0,1"/>
 
-                        </Border>
+
                         <Border Grid.Column="1" BorderThickness="0,1,1,1" BorderBrush="#81D779" CornerRadius="0,1,1,0">
-                            <ToggleButton Style="{StaticResource ComboxStyleBtn}" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"></ToggleButton>
+                            <ToggleButton x:Name="PART_DropDownToggle" Focusable="False" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" Style="{StaticResource ComboxStyleBtn}">
+                            </ToggleButton>
                         </Border>
-                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide">
-                            <Border CornerRadius="1" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}" x:Name="DropDown" SnapsToDevicePixels="True">
-                                <Border.Effect>
+                        <Popup IsOpen="{Binding IsDropDownOpen,RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" VerticalOffset="1">
+                            <Border CornerRadius="1" BorderThickness="1" BorderBrush="Silver"  MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}" x:Name="DropDown" SnapsToDevicePixels="True">
+                                <!--<Border.Effect>
                                     <DropShadowEffect Color="Black" BlurRadius="2" ShadowDepth="0" Opacity="0.5"/>
-                                </Border.Effect>
-                                <ScrollViewer Margin="4,6,4,6" Style="{DynamicResource ScrollViewerStyle}" MaxHeight="{TemplateBinding MaxDropDownHeight}" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                </Border.Effect>-->
+                                <!--Style="{DynamicResource ScrollViewerStyle}"-->
+                                <ScrollViewer Margin="0,0,1,0"  MaxHeight="{TemplateBinding MaxDropDownHeight}" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
                                     <!-- StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True -->
                                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="White"/>
                                 </ScrollViewer>
                             </Border>
                         </Popup>
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    <!--ComboxStyle222222222-->
+    <Style TargetType="{x:Type ComboBox}" x:Key="comboxStyleNew">
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <!--项模板-->
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="MinHeight" Value="22"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                <Border Name="itemBG" BorderThickness="0" Background="White">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#d9edf7" TargetName="itemBG"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FF9ED7F3" TargetName="itemBG"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Border Name="boderColor" BorderBrush="SkyBlue" BorderThickness="1" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.3*" MaxWidth="30"/>
+                            </Grid.ColumnDefinitions>
+                            <!--<ContentPresenter Name="PART_SelectedItem" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" VerticalAlignment="Center" Margin="3" HorizontalAlignment="Stretch" />-->
+
+                            <TextBox Name="PART_EditableTextBox" Visibility="Visible" BorderThickness="0" Text="{TemplateBinding Text}" IsReadOnly="{TemplateBinding IsReadOnly}" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" VerticalContentAlignment="Center"/>
+                            <ToggleButton Grid.Column="1" Name="PART_DropDownToggle" IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboxStyleBtn}"/>
+                            <Border Name="BTN" Grid.Column="1" BorderThickness="1 0 0 0" BorderBrush="SkyBlue">
+                            </Border>
+
+                            <Popup Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Focusable="False"  AllowsTransparency="True"  PopupAnimation="Slide" VerticalOffset="0" HorizontalOffset="-1">
+                                <Border BorderThickness="1" BorderBrush="SkyBlue" Width="{TemplateBinding ActualWidth}" MinHeight="{TemplateBinding MinHeight}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <!--此处严重注意Style的引用：1 StaticResource 时需定义在前面,2 DynamicResource 时第一次打开下拉框无效 不知道为什么-->
+                                    <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0" HorizontalAlignment="Stretch">
+                                        <StackPanel IsItemsHost="True" Background="White" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDropDownOpen" Value="true">
+                            <!--<Setter Property="BorderBrush" Value="Red" TargetName="boderColor"/>-->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Combox样式3333-->
+    <Style  TargetType="{x:Type ComboBox}" x:Key="combBoxRadius">
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <!--ComBoxItem-->
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="MinHeight" Value="22"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border Name="Back" Background="Transparent"  BorderThickness="0,0,0,0" BorderBrush="#81D779" >
+                                    <ContentPresenter  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"></ContentPresenter>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Back" Property="Background" Value="LightGray"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Border  BorderBrush="SkyBlue" BorderThickness="1" CornerRadius="1" Background="Transparent">
+                        <Grid>
+                            <!--下拉箭头-->
+                            <ToggleButton ClickMode="Press" Focusable="False" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" MinWidth="0" MinHeight="0" Width="Auto">
+                                <ToggleButton.Style>
+                                    <Style TargetType="{x:Type ToggleButton}">
+                                        <Setter Property="MinWidth" Value="0"/>
+                                        <Setter Property="MinHeight" Value="0"/>
+                                        <Setter Property="Width" Value="Auto"/>
+                                        <Setter Property="Height" Value="Auto"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="#00000000"/>
+                                        <Setter Property="BorderThickness" Value="2"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                    <DockPanel Background="{TemplateBinding Background}" LastChildFill="False" SnapsToDevicePixels="True">
+                                                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"  DockPanel.Dock="Right" >
+                                                            <Path Data="M0,0 L4,4 8,0z" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5 0.5">
+                                                                <Path.RenderTransform>
+                                                                    <RotateTransform x:Name="rtBTN" Angle="0"/>
+                                                                </Path.RenderTransform>
+                                                            </Path>
+                                                        </Border>
+                                                    </DockPanel>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation To="180" Storyboard.TargetName="rtBTN" Storyboard.TargetProperty="Angle" Duration="0:0:0.2"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation To="0" Storyboard.TargetName="rtBTN" Storyboard.TargetProperty="Angle" Duration="0:0:0.2"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ToggleButton.Style>
+                            </ToggleButton>
+                            <!--项内容-->
+                            <ContentPresenter IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" VerticalAlignment="Center" Margin="3" HorizontalAlignment="Stretch" />
+                            <TextBox x:Name="PART_EditableTextBox" HorizontalAlignment="Stretch" Focusable="True" Visibility="Collapsed" IsReadOnly="False"/>
+                            <!--下拉显示面板HorizontalOffset:设置下拉面板的相对位置-->
+                            <Popup HorizontalOffset="-1" Width="{TemplateBinding ActualWidth}"
+                                       IsOpen="{TemplateBinding IsDropDownOpen}" Focusable="False"  AllowsTransparency="True"  PopupAnimation="Slide">
+                                <Grid  SnapsToDevicePixels="True" HorizontalAlignment="Stretch" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border  BorderThickness="1,1,1,1" BorderBrush="SkyBlue" HorizontalAlignment="Stretch">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="White" />
+                                        </Border.Background>
+                                    <ScrollViewer  SnapsToDevicePixels="True" HorizontalAlignment="Stretch" >
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" HorizontalAlignment="Stretch" />
+                                    </ScrollViewer>
+                                    </Border>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

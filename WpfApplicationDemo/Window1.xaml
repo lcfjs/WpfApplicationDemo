@@ -10,7 +10,7 @@
     <Grid>
         <!--<Path Data="M0 0 10 20 S20 50 10 80 50 120 60 200 20 500 150 450 400 500 620 400 600 300 720 110 700 200 810 20  z" Fill="White" Stroke="Black" StrokeThickness="1"></Path>-->
         <StackPanel>
-            <DockPanel>
+            <DockPanel Visibility="Collapsed">
                 <Image Name="imgOriginal" Source="Images/start.png" Width="100" Height="50" MouseMove="Image_MouseMove"/>
 
                 <DockPanel Width="100" Height="100">
@@ -105,7 +105,7 @@
             </TextBlock>
 
             <DockPanel Height="100">
-                <StackPanel Width="150">
+                <StackPanel Width="200">
                     
                 <PasswordBox Name="txtPassword" Width="120" Height="23" >
                     <PasswordBox.Style>
@@ -117,21 +117,33 @@
                         </Style>
                     </PasswordBox.Style>
                 </PasswordBox>
-                
-                <TextBox Width="120" Height="23" TextWrapping="Wrap" Text="{Binding Path=Text,ElementName=txtWatermark}"></TextBox>
 
-                <TextBox x:Name="txtWatermark" local:ControlAttachProperty.Watermark="输入点东西吧" HorizontalAlignment="Left" Height="25" Margin="20,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120">
+                    <TextBox Width="120" Height="23" TextWrapping="Wrap" Text="{Binding Path=Text,ElementName=txtWatermark}">
+                        <TextBox.Effect>
+                            <DropShadowEffect x:Name="dse" BlurRadius="8" ShadowDepth="0" Color="#9966afe9" Opacity="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+
+                    <TextBox x:Name="txtWatermark" local:ControlAttachProperty.Watermark="请输入文本" Height="26" Margin="20,10,0,0" TextWrapping="Wrap"   VerticalContentAlignment="Center">
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}">
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type TextBox}">
-                                        <Grid>
-                                            <Border BorderThickness="1 1.5 1 1" BorderBrush="Silver" CornerRadius="3"></Border>
-                                            <TextBlock Name="LabWatermark" Text="{TemplateBinding local:ControlAttachProperty.Watermark}" Visibility="Collapsed" Background="Transparent" Foreground="Silver" Padding="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" >
-                                            </ScrollViewer>
-                                        </Grid>
+                                            <Grid>
+                                                <Border BorderThickness="1 1 1 1" BorderBrush="#ccc" Background="#fff" CornerRadius="3" SnapsToDevicePixels="true">
+                                                    <Border.Effect>
+                                                        <DropShadowEffect x:Name="dse" BlurRadius="8" ShadowDepth="0" Color="#9966afe9" Opacity="1"/>
+                                                    </Border.Effect>
+                                                    <Rectangle Height="1" VerticalAlignment="Top" Stroke="#000000" Opacity="0.1">
+                                                        <Rectangle.Effect>
+                                                            <BlurEffect Radius="1"/>
+                                                        </Rectangle.Effect>
+                                                    </Rectangle>
+                                                </Border>
+                                                <TextBlock Name="LabWatermark" Text="{TemplateBinding local:ControlAttachProperty.Watermark}" Visibility="Collapsed" Background="Transparent" Foreground="Silver" Padding="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                                <ScrollViewer x:Name="PART_ContentHost" Margin="0" Background="Transparent" Padding="0"/>
+                                            </Grid>
                                         <ControlTemplate.Triggers>
                                             <MultiTrigger>
                                                 <MultiTrigger.Conditions>
@@ -140,6 +152,31 @@
                                                 </MultiTrigger.Conditions>
                                                 <Setter Property="Visibility" TargetName="LabWatermark" Value="Visible"/>
                                             </MultiTrigger>
+                                                <Trigger Property="IsFocused" Value="true">
+                                                    <Setter Property="BorderBrush" Value="#66afe9"/>
+                                                    <Trigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="dse" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.15">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <BackEase EasingMode="EaseInOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.EnterActions>
+                                                    <Trigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="dse" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.15">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <BackEase EasingMode="EaseInOut" />
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.ExitActions>
+                                                </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
@@ -164,6 +201,35 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" IsEditable="False" MaxDropDownHeight="90" Margin="10 0 0 0" VerticalAlignment="Top" Width="120" Height="23" Style="{StaticResource combBoxRadius}">
+                    <ComboBoxItem Content="1重庆市"/>
+                    <ComboBoxItem Content="2北京市"/>
+                    <ComboBoxItem Content="3天津市"/>
+                    <ComboBoxItem Content="4上海市"/>
+                    <ComboBoxItem Content="5重庆市"/>
+                    <ComboBoxItem Content="6北京市"/>
+                    <ComboBoxItem Content="7天津市"/>
+                    <ComboBoxItem Content="8上海市"/>
+                    <ComboBoxItem Content="9重庆市"/>
+                    <ComboBoxItem Content="10北京市"/>
+                    <ComboBoxItem Content="12天津市"/>
+                    <ComboBoxItem Content="13上海市"/>
+                </ComboBox>
+                <ComboBox HorizontalAlignment="Left" MaxDropDownHeight="90" Margin="10 0 0 0" VerticalAlignment="Top" Width="120" Height="23" Style="{StaticResource comboxStyleNew}">
+                    <ComboBoxItem Content="1重庆市"/>
+                    <ComboBoxItem Content="2北京市"/>
+                    <ComboBoxItem Content="3天津市"/>
+                    <ComboBoxItem Content="4上海市"/>
+                    <ComboBoxItem Content="5重庆市"/>
+                    <ComboBoxItem Content="6北京市"/>
+                    <ComboBoxItem Content="7天津市"/>
+                    <ComboBoxItem Content="8上海市"/>
+                    <ComboBoxItem Content="9重庆市"/>
+                    <ComboBoxItem Content="10北京市"/>
+                    <ComboBoxItem Content="12天津市"/>
+                    <ComboBoxItem Content="13上海市"/>
+                </ComboBox>
             </DockPanel>
 
         </StackPanel>

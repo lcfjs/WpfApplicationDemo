@@ -18,18 +18,18 @@
     <Grid>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="115,48,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" MaxDropDownHeight="100" Margin="115,83,0,0" VerticalAlignment="Top" Width="120" Style="{StaticResource ComboBoxStyle}">
-            <ComboBoxItem Content="重庆市"/>
-            <ComboBoxItem Content="北京市"/>
-            <ComboBoxItem Content="天津市"/>
-            <ComboBoxItem Content="上海市"/>
-            <ComboBoxItem Content="重庆市"/>
-            <ComboBoxItem Content="北京市"/>
-            <ComboBoxItem Content="天津市"/>
-            <ComboBoxItem Content="上海市"/>
-            <ComboBoxItem Content="重庆市"/>
-            <ComboBoxItem Content="北京市"/>
-            <ComboBoxItem Content="天津市"/>
-            <ComboBoxItem Content="上海市"/>
+            <ComboBoxItem Content="1重庆市"/>
+            <ComboBoxItem Content="2北京市"/>
+            <ComboBoxItem Content="3天津市"/>
+            <ComboBoxItem Content="4上海市"/>
+            <ComboBoxItem Content="5重庆市"/>
+            <ComboBoxItem Content="6北京市"/>
+            <ComboBoxItem Content="7天津市"/>
+            <ComboBoxItem Content="8上海市"/>
+            <ComboBoxItem Content="9重庆市"/>
+            <ComboBoxItem Content="10北京市"/>
+            <ComboBoxItem Content="12天津市"/>
+            <ComboBoxItem Content="13上海市"/>
         </ComboBox>
         <local:Loading HorizontalAlignment="Left" Margin="70,125,0,0" VerticalAlignment="Top" Height="115" Width="105" FillColor="#FF18A9E4" Foreground="{x:Null}"/>
 
@@ -56,7 +56,7 @@
                                 <Setter.Value>
                                     <VisualBrush Stretch="None" AlignmentX="Left" AlignmentY="Center">
                                         <VisualBrush.Visual>
-                                            <TextBlock Text="这种模式不够灵活" Background="Transparent" Foreground="Silver" Padding="5 0 0 0" />
+                                            <TextBlock Name="labWatermark" Text="无法动态绑定" Background="Transparent" Foreground="Silver" Padding="5 0 0 0" />
                                         </VisualBrush.Visual>
                                     </VisualBrush>
                                 </Setter.Value>
@@ -157,7 +157,6 @@
                     <RowDefinition MinHeight="20"/>
                 </Grid.RowDefinitions>
                 <GridSplitter Grid.Row="1" Grid.RowSpan="1" Height="2" HorizontalAlignment="Stretch" ShowsPreview="False" Background="SkyBlue" Foreground="Red" Margin="0 5 0 5"/>
-
             </Grid>
         </Border>
         <Grid Name="b1" Background="SkyBlue" Margin="18,265,611,75" MouseDown="Border_MouseDown" local:MyEventRouteButton.NewClick="localMR_NewClick">

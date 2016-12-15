@@ -37,5 +37,10 @@ namespace WpfApplicationDemo
             
 
         }
+
+        private void svCtl_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            Console.WriteLine("ExtentHeight" + e.ExtentHeight+ ",ViewportHeight" + e.ViewportHeight+ ",VerticalOffset" + e.VerticalOffset);
+        }
     }
 }

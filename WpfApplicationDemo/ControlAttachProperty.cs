@@ -22,7 +22,7 @@ namespace WpfApplicationDemo
             obj.SetValue(WatermarkProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for Watermark.  This enables animation, styling, binding, etc...
+        //水印文字
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.RegisterAttached("Watermark", typeof(string), typeof(ControlAttachProperty), new PropertyMetadata(""));
 

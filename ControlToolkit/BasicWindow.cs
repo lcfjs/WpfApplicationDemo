@@ -48,6 +48,7 @@ namespace ControlToolkit
         static BasicWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(BasicWindow), new FrameworkPropertyMetadata(typeof(BasicWindow)));
+
         }
     }
 }

@@ -36,9 +36,8 @@ namespace WpfApplicationDemo
             new WindowAsync().ShowDialog();
 
 
-            
 
-
+            System.Windows.Controls.Primitives.Popup p; 
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -72,7 +71,27 @@ namespace WpfApplicationDemo
                 dgData.ItemsSource = list.Skip(pageControl.PageSize*(pageIndex - 1)).Take(pageControl.PageSize).ToList();
             };
 
+
+            var os = Environment.Is64BitOperatingSystem;
+            Console.WriteLine("Is64BitOperatingSystem:" + os);
+            Console.WriteLine(Environment.OSVersion.VersionString);
+            Console.WriteLine(Environment.UserName);
+            Console.WriteLine(Environment.OSVersion.Platform);
+            Console.WriteLine(Environment.ProcessorCount);
+            Console.WriteLine(Environment.CurrentDirectory);
+            Console.WriteLine(Environment.SystemDirectory);
+            Console.WriteLine(Environment.SystemPageSize);
+            Console.WriteLine(Environment.TickCount/60000);
+            Console.WriteLine(Environment.UserDomainName);
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+            foreach (var item in Environment.GetLogicalDrives())
+            {
+                Console.WriteLine(item);
+            }
+
         }
+
 
         private void Window_Closed(object sender, EventArgs e)
         {

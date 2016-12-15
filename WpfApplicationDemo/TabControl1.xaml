@@ -120,7 +120,7 @@
                     <DockPanel>
                         <TextBlock>this is tab2!</TextBlock>
 
-                        <ScrollViewer Name="svCtl" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Name="svCtl" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ScrollChanged="svCtl_ScrollChanged">
                             <StackPanel Name="panelContent">
 
                             </StackPanel>
