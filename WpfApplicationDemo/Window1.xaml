@@ -10,7 +10,7 @@
     <Grid>
         <!--<Path Data="M0 0 10 20 S20 50 10 80 50 120 60 200 20 500 150 450 400 500 620 400 600 300 720 110 700 200 810 20  z" Fill="White" Stroke="Black" StrokeThickness="1"></Path>-->
         <StackPanel>
-            <DockPanel Visibility="Collapsed">
+            <DockPanel Visibility="Visible">
                 <Image Name="imgOriginal" Source="Images/start.png" Width="100" Height="50" MouseMove="Image_MouseMove"/>
 
                 <DockPanel Width="100" Height="100">
@@ -89,8 +89,8 @@
                 </Line>
 
             </DockPanel>
-            <TextBlock Text="this is textblock!"/>
-            <TextBlock Text="this is textblock!" RenderTransformOrigin="1 0.5">
+            <TextBox Name="txtReflect" Text="this is textblock!"/>
+            <TextBlock Text="{Binding Path=Text,ElementName=txtReflect}" RenderTransformOrigin="1 0.5">
                 <TextBlock.OpacityMask>
                     <LinearGradientBrush StartPoint="0 0" EndPoint="0 1">
                         <GradientStop Color="#00000000" Offset="0.1"/>
@@ -201,8 +201,8 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" IsEditable="False" MaxDropDownHeight="90" Margin="10 0 0 0" VerticalAlignment="Top" Width="120" Height="23" Style="{StaticResource combBoxRadius}">
+                <StackPanel Width="1500">
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" MaxDropDownHeight="90" Margin="10 10 0 0" VerticalAlignment="Top" Width="120" Height="23" Style="{StaticResource combBoxRadius}">
                     <ComboBoxItem Content="1重庆市"/>
                     <ComboBoxItem Content="2北京市"/>
                     <ComboBoxItem Content="3天津市"/>
@@ -216,7 +216,7 @@
                     <ComboBoxItem Content="12天津市"/>
                     <ComboBoxItem Content="13上海市"/>
                 </ComboBox>
-                <ComboBox HorizontalAlignment="Left" MaxDropDownHeight="90" Margin="10 0 0 0" VerticalAlignment="Top" Width="120" Height="23" Style="{StaticResource comboxStyleNew}">
+                <ComboBox HorizontalAlignment="Left" MaxDropDownHeight="90" IsEditable="{Binding Path=IsChecked,ElementName=chkComb}" Margin="10 10 0 0" VerticalAlignment="Top" Width="120" Height="23" Style="{StaticResource comboxStyleNew}">
                     <ComboBoxItem Content="1重庆市"/>
                     <ComboBoxItem Content="2北京市"/>
                     <ComboBoxItem Content="3天津市"/>
@@ -230,6 +230,8 @@
                     <ComboBoxItem Content="12天津市"/>
                     <ComboBoxItem Content="13上海市"/>
                 </ComboBox>
+                    <CheckBox Name="chkComb" Margin="10 10 0 0">IsEditable</CheckBox>
+                </StackPanel>
             </DockPanel>
 
         </StackPanel>

@@ -5,7 +5,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border x:Name="Back" Background="#F7FDF7" BorderThickness="1" BorderBrush="Transparent">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" x:Name="Back" Background="#F7FDF7" BorderThickness="1" BorderBrush="Transparent">
                         <!--59CA4F-->
                         <Path Name="PathFill" Fill="SkyBlue" Width="8" Height="6" StrokeThickness="0" Data="M0,0 L5,10 L10,0 z" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
                             <Path.RenderTransform>
@@ -17,7 +22,8 @@
                                 </TransformGroup>
                             </Path.RenderTransform>
                         </Path>
-                    </Border>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="PathFill" Property="Fill" Value="White"></Setter>
@@ -97,9 +103,30 @@
                                 </Border.Effect>-->
                                 <!--Style="{DynamicResource ScrollViewerStyle}"-->
                                 <ScrollViewer Margin="0,0,1,0"  MaxHeight="{TemplateBinding MaxDropDownHeight}" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
-                                    <!-- StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True -->
+                                     <!--StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True--> 
                                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="White"/>
                                 </ScrollViewer>
+                                <!--下拉复选框需定义自定义控件 此处要用comboBox.ItemsSource设置值-->
+                                <!--<ListBox x:Name="PART_ListBox" SelectionMode="Multiple" ItemsSource="{TemplateBinding ItemsSource}" ItemTemplate="{TemplateBinding ItemTemplate}" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinHeight="100">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}" >
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListBoxItem}" >
+                                                        <Border x:Name="Border" Background="{TemplateBinding Background}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                                <CheckBox IsChecked="{Binding Path=IsSelected,RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}">
+                                                                    <ContentPresenter Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                                </CheckBox>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>-->
                             </Border>
                         </Popup>
                     </Grid>
@@ -143,15 +170,16 @@
                     <Border Name="boderColor" BorderBrush="SkyBlue" BorderThickness="1" CornerRadius="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.7*"/>
-                                <ColumnDefinition Width="0.3*" MaxWidth="30"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
-                            <!--<ContentPresenter Name="PART_SelectedItem" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" VerticalAlignment="Center" Margin="3" HorizontalAlignment="Stretch" />-->
+                            <ContentPresenter Name="PART_SelectedItem" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" VerticalAlignment="Center" Margin="3" HorizontalAlignment="Stretch" />
 
-                            <TextBox Name="PART_EditableTextBox" Visibility="Visible" BorderThickness="0" Text="{TemplateBinding Text}" IsReadOnly="{TemplateBinding IsReadOnly}" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" VerticalContentAlignment="Center"/>
-                            <ToggleButton Grid.Column="1" Name="PART_DropDownToggle" IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboxStyleBtn}"/>
+                            <ToggleButton Grid.Column="0" Grid.ColumnSpan="2" Name="PART_DropDownToggle" IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboxStyleBtn}"/>
                             <Border Name="BTN" Grid.Column="1" BorderThickness="1 0 0 0" BorderBrush="SkyBlue">
                             </Border>
+
+                            <TextBox Name="PART_EditableTextBox" Visibility="Collapsed" BorderThickness="0" Text="{TemplateBinding Text}" IsReadOnly="{TemplateBinding IsReadOnly}" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" VerticalContentAlignment="Center"/>
 
                             <Popup Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Focusable="False"  AllowsTransparency="True"  PopupAnimation="Slide" VerticalOffset="0" HorizontalOffset="-1">
                                 <Border BorderThickness="1" BorderBrush="SkyBlue" Width="{TemplateBinding ActualWidth}" MinHeight="{TemplateBinding MinHeight}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
@@ -166,6 +194,14 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDropDownOpen" Value="true">
                             <!--<Setter Property="BorderBrush" Value="Red" TargetName="boderColor"/>-->
+                        </Trigger>
+                        <!--编辑模式-->
+                        <Trigger Property="IsEditable" Value="True">
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_SelectedItem" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Background" Value="Transparent" />
+                            <Setter Property="IsTabStop" Value="false" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Focusable" Value="False" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -207,7 +243,7 @@
                     <Border  BorderBrush="SkyBlue" BorderThickness="1" CornerRadius="1" Background="Transparent">
                         <Grid>
                             <!--下拉箭头-->
-                            <ToggleButton ClickMode="Press" Focusable="False" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" MinWidth="0" MinHeight="0" Width="Auto">
+                            <ToggleButton Name="PART_DropDownToggle" ClickMode="Press" Focusable="False" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="3" MinWidth="0" MinHeight="0" Width="Auto">
                                 <ToggleButton.Style>
                                     <Style TargetType="{x:Type ToggleButton}">
                                         <Setter Property="MinWidth" Value="0"/>
@@ -259,7 +295,7 @@
                                 </ToggleButton.Style>
                             </ToggleButton>
                             <!--项内容-->
-                            <ContentPresenter IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" VerticalAlignment="Center" Margin="3" HorizontalAlignment="Stretch" />
+                            <ContentPresenter Name="PART_SelectedItem" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" VerticalAlignment="Center" Margin="3" HorizontalAlignment="Stretch" />
                             <TextBox x:Name="PART_EditableTextBox" HorizontalAlignment="Stretch" Focusable="True" Visibility="Collapsed" IsReadOnly="False"/>
                             <!--下拉显示面板HorizontalOffset:设置下拉面板的相对位置-->
                             <Popup HorizontalOffset="-1" Width="{TemplateBinding ActualWidth}"
@@ -277,6 +313,17 @@
                             </Popup>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+
+                        <!--编辑模式-->
+                        <!--<Trigger Property="IsEditable" Value="True">
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_SelectedItem" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Background" Value="Transparent" />
+                            <Setter Property="IsTabStop" Value="false" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Focusable" Value="False" />
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

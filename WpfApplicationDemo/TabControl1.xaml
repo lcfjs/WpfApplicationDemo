@@ -33,70 +33,13 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
-
-        <Style TargetType="{x:Type TabItem}">
-            <Setter Property="Template">
+            <!--<Setter Property="ItemContainerStyle">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Grid SnapsToDevicePixels="True">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup>
-                                    <VisualState Name="MouseOver">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0.1" To="1" Storyboard.TargetName="hoverShape" Storyboard.TargetProperty="Opacity"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState Name="Normal">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0.3" To="0" Storyboard.TargetName="hoverShape" Storyboard.TargetProperty="Opacity"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-
-                                <VisualStateGroup>
-                                    <VisualState Name="Selected">
-                                        <Storyboard>
-                                            <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetName="selectedShape" Storyboard.TargetProperty="Opacity"/>
-                                            <DoubleAnimation To="0" Duration="0:0:0.1" Storyboard.TargetName="bLay" Storyboard.TargetProperty="Opacity"/>
-                                            <ColorAnimation To="White" Duration="0:0:0.1" Storyboard.TargetName="tabHeader" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"/>
-                                            <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetName="bWbg" Storyboard.TargetProperty="Opacity"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState Name="Unselected">
-                                        <Storyboard>
-                                            <DoubleAnimation To="0" Duration="0:0:0.1" Storyboard.TargetName="selectedShape" Storyboard.TargetProperty="Opacity"/>
-                                            <DoubleAnimation To="0" Duration="0:0:0.1" Storyboard.TargetName="bWbg" Storyboard.TargetProperty="Opacity"/>
-                                            <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetName="bLay" Storyboard.TargetProperty="Opacity"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-
-                            <Border Name="bWbg" Height="30" Background="White" Opacity="0" Margin="0,0,-5,0"/>
-                            <Border Name="bLay" SnapsToDevicePixels="True" BorderThickness="0" BorderBrush="SkyBlue" Height="40">
-                                <Border Name="hoverShape" Background="SkyBlue" BorderBrush="#FFA1B7EA" BorderThickness="0.1"></Border>
-                            </Border>
-                            <Border Name="selectedShape" Opacity="0" BorderThickness="0" BorderBrush="Transparent" Height="40">
-                                <Path Data="M214,108 L346,108 346.125,118.125 337.75,126.125 346.375,134 346.375,143.875 214.25,144.25 z" Stretch="Fill">
-                                    <Path.Fill>
-                                        <RadialGradientBrush GradientOrigin="0.2,0.5" RadiusX="0.8" RadiusY="0.8">
-                                            <GradientStop Color="#FF5FA3F6" Offset="0" />
-                                            <GradientStop Color="#FF0C55B9" Offset="1" />
-                                        </RadialGradientBrush>
-                                    </Path.Fill>
-                                </Path>
-                            </Border>
-
-
-
-                            <ContentPresenter Name="tabHeader" Margin="15,0,5,0" Content="{TemplateBinding Header}" VerticalAlignment="Center" TextBlock.FontSize="16">
-                            </ContentPresenter>
-                        </Grid>
-                    </ControlTemplate>
+                    
                 </Setter.Value>
-            </Setter>
+            </Setter>-->
         </Style>
+
     </Window.Resources>
     <Grid Background="White">
 

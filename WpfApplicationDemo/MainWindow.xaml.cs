@@ -28,7 +28,6 @@ namespace WpfApplicationDemo
 
             //WindowBehaviorHelper w = new WindowBehaviorHelper(this);
             //w.RepairBehavior();
-
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -89,7 +88,7 @@ namespace WpfApplicationDemo
             {
                 Console.WriteLine(item);
             }
-
+            
         }
 
 
