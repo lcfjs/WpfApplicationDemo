@@ -34,9 +34,9 @@ namespace WpfApplicationDemo
 
 
         /// <summary>
-        /// 跳转至第几页(值从1开始)
+        /// 跳转至第几页(值从1开始)(点击查询时 外部重置为第一页)
         /// </summary>
-        private int JumpToPage
+        public int JumpToPage
         {
             get;
             set;
