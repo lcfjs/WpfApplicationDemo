@@ -233,10 +233,10 @@
                     <CheckBox Name="chkComb" Margin="10 10 0 0">IsEditable</CheckBox>
                 </StackPanel>
 
-                <ListBox Margin="5" Grid.Column="1" Style="{StaticResource listboxRadio}">
-                    <ListBoxItem  >男</ListBoxItem>
+                <ListBox Name="listboxDemo" Margin="5"  Style="{StaticResource listboxRadio}">
+                    <!--<ListBoxItem  >男</ListBoxItem>
                     <ListBoxItem  >女</ListBoxItem>
-                    <ListBoxItem  >其他</ListBoxItem>
+                    <ListBoxItem  >其他</ListBoxItem>-->
                 </ListBox>
             </DockPanel>
 

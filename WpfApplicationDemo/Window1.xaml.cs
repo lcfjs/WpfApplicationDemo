@@ -42,6 +42,11 @@ namespace WpfApplicationDemo
                 new UserInfo { Id=4, Name="马六",Age=25 }
             };
             lvData.ItemsSource = list;
+
+
+            listboxDemo.DisplayMemberPath = "Name";
+            listboxDemo.SelectedValuePath = "Id";
+            listboxDemo.ItemsSource = list;
         }
 
 
