@@ -201,7 +201,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <StackPanel Width="1500">
+                <StackPanel Width="200">
                 <ComboBox x:Name="comboBox" HorizontalAlignment="Left" MaxDropDownHeight="90" Margin="10 10 0 0" VerticalAlignment="Top" Width="120" Height="23" Style="{StaticResource combBoxRadius}">
                     <ComboBoxItem Content="1重庆市"/>
                     <ComboBoxItem Content="2北京市"/>
@@ -232,6 +232,12 @@
                 </ComboBox>
                     <CheckBox Name="chkComb" Margin="10 10 0 0">IsEditable</CheckBox>
                 </StackPanel>
+
+                <ListBox Margin="5" Grid.Column="1" Style="{StaticResource listboxRadio}">
+                    <ListBoxItem  >男</ListBoxItem>
+                    <ListBoxItem  >女</ListBoxItem>
+                    <ListBoxItem  >其他</ListBoxItem>
+                </ListBox>
             </DockPanel>
 
         </StackPanel>
