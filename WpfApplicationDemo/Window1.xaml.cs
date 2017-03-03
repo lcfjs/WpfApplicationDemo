@@ -36,10 +36,9 @@ namespace WpfApplicationDemo
             timer.Start();
 
             List<UserInfo> list = new List<UserInfo> {
-                new UserInfo { Id=1, Name="张三",Age=27 },
+                new UserInfo { Id=1, Name="Listbox",Age=27 },
                 new UserInfo { Id=2, Name="李四",Age=33 },
-                new UserInfo { Id=3, Name="王五",Age=22 },
-                new UserInfo { Id=4, Name="马六",Age=25 }
+                new UserInfo { Id=3, Name="王五",Age=22 }
             };
             lvData.ItemsSource = list;
 
@@ -81,10 +80,25 @@ namespace WpfApplicationDemo
 
         }
 
+        private void Thumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            var thumb = sender as System.Windows.Controls.Primitives.Thumb;
+            double left = Canvas.GetLeft(thumb)+e.HorizontalChange;
+            double top= Canvas.GetTop(thumb)+e.VerticalChange;
+            if (left < 0) left = 0;
+            if (top < 0) top = 0;
+            if (left > panelLayout.ActualWidth- thumb.ActualWidth) left = panelLayout.ActualWidth - thumb.ActualWidth;
+            if (top > panelLayout.ActualHeight - thumb.ActualHeight) top = panelLayout.ActualHeight - thumb.ActualHeight;
+            labLocation.Text = left + ","+ top;
+            Canvas.SetLeft(thumb, left);
+            Canvas.SetTop(thumb, top);
+        }
 
-
-
-
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var lab = sender as TextBlock;
+           
+        }
     }
 
     public class UserInfo

@@ -9,6 +9,43 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlToolkit", "ControlTo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{7478B2D1-BB6F-46EF-9728-1C94639EFACE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{FCF9D632-2FA3-4BB5-9FF1-287B888660FF}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\Microsoft.Expression.Drawing.dll = Lib\Microsoft.Expression.Drawing.dll
+		Lib\Microsoft.Expression.Drawing.xml = Lib\Microsoft.Expression.Drawing.xml
+		Lib\Microsoft.Expression.Interactions.dll = Lib\Microsoft.Expression.Interactions.dll
+		Lib\Microsoft.Expression.Interactions.xml = Lib\Microsoft.Expression.Interactions.xml
+		Lib\Microsoft.Practices.Prism.dll = Lib\Microsoft.Practices.Prism.dll
+		Lib\System.Windows.Interactivity.dll = Lib\System.Windows.Interactivity.dll
+		Lib\System.Windows.Interactivity.xml = Lib\System.Windows.Interactivity.xml
+		Lib\Xceed.Wpf.Toolkit.dll = Lib\Xceed.Wpf.Toolkit.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sqlite", "Sqlite", "{ECE4E479-5F19-4DBA-B02B-1782A122FE4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Npoi", "Npoi", "{5619F01C-EF62-4B40-A834-2CA49FF5BBA6}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\NPOI\ICSharpCode.SharpZipLib.dll = Lib\NPOI\ICSharpCode.SharpZipLib.dll
+		Lib\NPOI\NPOI.dll = Lib\NPOI\NPOI.dll
+		Lib\NPOI\NPOI.OOXML.dll = Lib\NPOI\NPOI.OOXML.dll
+		Lib\NPOI\NPOI.OpenXml4Net.dll = Lib\NPOI\NPOI.OpenXml4Net.dll
+		Lib\NPOI\NPOI.OpenXmlFormats.dll = Lib\NPOI\NPOI.OpenXmlFormats.dll
+		Lib\NPOI\NPOI.xml = Lib\NPOI\NPOI.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{C5DEE904-7EAC-4A16-8C12-8B866F8ED748}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\Sqlite\x86\SQLite.Interop.dll = Lib\Sqlite\x86\SQLite.Interop.dll
+		Lib\Sqlite\x86\System.Data.SQLite.dll = Lib\Sqlite\x86\System.Data.SQLite.dll
+		Lib\Sqlite\x86\System.Data.SQLite.xml = Lib\Sqlite\x86\System.Data.SQLite.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x64", "x64", "{1600308F-0EC7-4B9D-B72B-DFDAD12F2155}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\Sqlite\x64\SQLite.Interop.dll = Lib\Sqlite\x64\SQLite.Interop.dll
+		Lib\Sqlite\x64\System.Data.SQLite.dll = Lib\Sqlite\x64\System.Data.SQLite.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +67,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ECE4E479-5F19-4DBA-B02B-1782A122FE4A} = {FCF9D632-2FA3-4BB5-9FF1-287B888660FF}
+		{5619F01C-EF62-4B40-A834-2CA49FF5BBA6} = {FCF9D632-2FA3-4BB5-9FF1-287B888660FF}
+		{C5DEE904-7EAC-4A16-8C12-8B866F8ED748} = {ECE4E479-5F19-4DBA-B02B-1782A122FE4A}
+		{1600308F-0EC7-4B9D-B72B-DFDAD12F2155} = {ECE4E479-5F19-4DBA-B02B-1782A122FE4A}
 	EndGlobalSection
 EndGlobal

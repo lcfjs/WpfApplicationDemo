@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApplicationDemo"
         xmlns:ControlToolkit="clr-namespace:ControlToolkit;assembly=ControlToolkit" x:Class="WpfApplicationDemo.Window1"
         mc:Ignorable="d"
-        Title="Window1" Height="500" Width="900" >
+        Title="Window1" Height="500" Width="1000" >
     <Grid>
         <!--<Path Data="M0 0 10 20 S20 50 10 80 50 120 60 200 20 500 150 450 400 500 620 400 600 300 720 110 700 200 810 20  z" Fill="White" Stroke="Black" StrokeThickness="1"></Path>-->
         <StackPanel>
@@ -238,6 +238,14 @@
                     <ListBoxItem  >女</ListBoxItem>
                     <ListBoxItem  >其他</ListBoxItem>-->
                 </ListBox>
+                <GroupBox Header="Thumb">
+                    <Canvas Name="panelLayout" Background="SkyBlue">
+                        <TextBlock Name="labLocation" Canvas.Top="10" Canvas.Left="10">0,0</TextBlock>
+
+                        <Thumb Width="30" Height="30" Background="AntiqueWhite" Canvas.Top="10" Canvas.Left="100" DragDelta="Thumb_DragDelta">
+                        </Thumb>
+                    </Canvas>
+                </GroupBox>
             </DockPanel>
 
         </StackPanel>
