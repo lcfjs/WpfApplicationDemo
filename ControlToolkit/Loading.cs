@@ -72,7 +72,7 @@ namespace ControlToolkit
         public static readonly DependencyProperty FillColorProperty;
         #endregion
         //VS设计器属性支持
-        [Description("背景色"), Category("个性配置"), DefaultValue("#FF18A9E4")]
+        [Description("背景色"), Category("个性配置")]
         public Color FillColor
         {
             //GetValue,SetValue为固定写法，此处一般不建议处理其他逻辑

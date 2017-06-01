@@ -88,7 +88,7 @@ namespace WpfApplicationDemo
             {
                 Console.WriteLine(item);
             }
-            
+
         }
 
 

@@ -56,7 +56,7 @@
                                 <Setter.Value>
                                     <VisualBrush Stretch="None" AlignmentX="Left" AlignmentY="Center">
                                         <VisualBrush.Visual>
-                                            <TextBlock Name="labWatermark" Text="无法动态绑定" Background="Transparent" Foreground="Silver" Padding="5 0 0 0" />
+                                            <TextBlock Name="labWatermark" Text="无法动态绑定！" Background="Transparent" Foreground="Silver" Padding="5 0 0 0" />
                                         </VisualBrush.Visual>
                                     </VisualBrush>
                                 </Setter.Value>

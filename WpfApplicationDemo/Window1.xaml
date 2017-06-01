@@ -21,7 +21,7 @@
                 <Path Fill="AntiqueWhite" Margin="10 0 0 0">
                     <Path.Data>
                         <GeometryGroup FillRule="EvenOdd">
-                            <RectangleGeometry Rect="0 0 100 100" />
+                            <RectangleGeometry Rect="0 0 100 100"/>
                             <EllipseGeometry Center="50 50" RadiusX="30" RadiusY="30"/>
                         </GeometryGroup>
                     </Path.Data>
@@ -46,7 +46,7 @@
                             <CombinedGeometry.Geometry2>
                                 <RectangleGeometry Rect="1 40 98 20">
                                     <RectangleGeometry.Transform>
-                                        <RotateTransform Angle="-45" CenterX="50" CenterY="50"/>
+                                        <RotateTransform Angle="45" CenterX="50" CenterY="50"/>
                                     </RectangleGeometry.Transform>
                                 </RectangleGeometry>
                             </CombinedGeometry.Geometry2>
