@@ -39,7 +39,8 @@
                 <DataGridTextColumn Header="年龄" Width="60" Binding="{Binding Age}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <local:PagingControl x:Name="pageControl" VerticalAlignment="Bottom"/>
+        <local:PageControl x:Name="pageControl" VerticalAlignment="Bottom" Margin="0 0 0 0"></local:PageControl>
+        <!--<local:PagingControl x:Name="pageControl" VerticalAlignment="Bottom"/>-->
 
         <ToggleButton Width="100" Height="30" Content="hello" Checked="ToggleButton_Checked"/>
         <ControlToolkit:Loading HorizontalAlignment="Left" Margin="430,40,0,0" VerticalAlignment="Top" FillColor="#FF18A9E4"/>
@@ -115,8 +116,8 @@
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
-                    <local:InvokeCommandActionEx Command="{Binding ButtonMouseDown}" CommandParameter="{Binding ElementName=btnVisual}"/>
-                    <!--<i:InvokeCommandAction Command="{Binding ButtonMouseDown2}" CommandParameter="hello!"/>-->
+                    <!--<local:InvokeCommandActionEx Command="{Binding ButtonMouseDown}" CommandParameter="额外参数"/>-->
+                    <i:InvokeCommandAction Command="{Binding ButtonMouseDown2}" CommandParameter="hello!"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button>

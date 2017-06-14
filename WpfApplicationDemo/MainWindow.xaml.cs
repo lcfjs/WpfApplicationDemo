@@ -36,7 +36,7 @@ namespace WpfApplicationDemo
 
 
 
-            System.Windows.Controls.Primitives.Popup p; 
+            System.Windows.Controls.Primitives.Popup p;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -62,14 +62,16 @@ namespace WpfApplicationDemo
             List<Test> list = new List<Test>();
             for (int i = 0; i < 133; i++)
             {
-                list.Add(new Test {Age = i, Name=(i+500) +"" });
+                list.Add(new Test { Age = i, Name = (i + 500) + "" });
             }
             dgData.ItemsSource = list.Take(pageControl.PageSize).ToList();
-            pageControl.TotalRow = list.Count;
-            pageControl.OnPageChangedEvent += (pageIndex) => {
-                dgData.ItemsSource = list.Skip(pageControl.PageSize*(pageIndex - 1)).Take(pageControl.PageSize).ToList();
+            pageControl.Init(list.Count);
+            //pageControl.TotalRow = list.Count;
+            pageControl.OnPageChangedEvent += (goIndex) =>
+            {
+                dgData.ItemsSource = list.Skip(pageControl.PageSize * (goIndex - 1)).Take(pageControl.PageSize).ToList();
             };
-
+            
 
             var os = Environment.Is64BitOperatingSystem;
             Console.WriteLine("Is64BitOperatingSystem:" + os);
@@ -80,7 +82,7 @@ namespace WpfApplicationDemo
             Console.WriteLine(Environment.CurrentDirectory);
             Console.WriteLine(Environment.SystemDirectory);
             Console.WriteLine(Environment.SystemPageSize);
-            Console.WriteLine(Environment.TickCount/60000);
+            Console.WriteLine(Environment.TickCount / 60000);
             Console.WriteLine(Environment.UserDomainName);
             Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
             Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
@@ -102,13 +104,14 @@ namespace WpfApplicationDemo
 
         }
 
-        private void ChangeVal( Test val)
+        private void ChangeVal(Test val)
         {
             val.Name = "world";
             val = new Test { Age = 10, Name = "hello" };
         }
 
-        class Test {
+        class Test
+        {
             public int Age { get; set; }
             public string Name { get; set; }
         }
@@ -123,8 +126,8 @@ namespace WpfApplicationDemo
         {
             new TabControl1().ShowDialog();
 
-            System.Windows.Controls.Primitives.Thumb t = new  System.Windows.Controls.Primitives.Thumb();
-            
+            System.Windows.Controls.Primitives.Thumb t = new System.Windows.Controls.Primitives.Thumb();
+
         }
 
         private void btnVisual_Click(object sender, RoutedEventArgs e)
@@ -138,11 +141,11 @@ namespace WpfApplicationDemo
         {
             System.Windows.Forms.MessageBox.Show((sender as FrameworkElement).Name);
         }
-        
+
 
         private void btnRoute_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("btnRoute_Click:"+ (sender as FrameworkElement).Name);
+            System.Windows.Forms.MessageBox.Show("btnRoute_Click:" + (sender as FrameworkElement).Name);
         }
 
         private void localMR_NewClick(object sender, MyEventArgs e)
@@ -168,14 +171,18 @@ namespace WpfApplicationDemo
         #region Command Test
 
         //1.
-        public ICommand ButtonMouseDown { get { return new DelegateCommand<CommandParameterEx>((parameter)=> { ButtonMouseDownMethod(parameter); }); } }
+        public ICommand ButtonMouseDown { get { return new DelegateCommand<CommandParameterEx>((parameter) => { ButtonMouseDownMethod(parameter); }); } }
 
         private void ButtonMouseDownMethod(CommandParameterEx parameter)
         {
-            var btn = parameter.Sender as Button;
-            btn.Content = " woow";
-            //
-            System.Windows.Forms.MessageBox.Show(parameter+"");
+            if (parameter != null)
+            {
+                var btn = parameter.Sender as Button;
+                if (btn != null)
+                    btn.Content = " woow";
+                //
+                System.Windows.Forms.MessageBox.Show(parameter.Sender.GetType() + "\r\n" + parameter.Parameter?.GetType() + "\r\n" + parameter.EventArgs);
+            }
 
             //System.Windows.Forms.MessageBox.Show(SystemParameters.FullPrimaryScreenHeight + ","+ SystemParameters.PrimaryScreenHeight+","+ SystemParameters.WorkArea.Height);
             //System.Windows.Forms.MessageBox.Show((parameter.Sender as FrameworkElement).Name+"");
@@ -187,7 +194,7 @@ namespace WpfApplicationDemo
         private void BMDMethod2(object parameter)
         {
             System.Windows.Forms.MessageBox.Show(parameter + "");
-            
+
         }
 
 
@@ -195,7 +202,7 @@ namespace WpfApplicationDemo
 
         private void chkKeyboardC_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key== Key.Y && e.KeyboardDevice.Modifiers== ModifierKeys.Control)
+            if (e.Key == Key.Y && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
             {
                 chkKeyboardC.IsChecked = !chkKeyboardC.IsChecked;
             }
@@ -205,7 +212,7 @@ namespace WpfApplicationDemo
 
         private void chkSlider_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void btnWindow1_Click(object sender, RoutedEventArgs e)

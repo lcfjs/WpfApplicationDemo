@@ -98,6 +98,9 @@
     <Compile Include="ControlAttachProperty.cs" />
     <Compile Include="Loading.cs" />
     <Compile Include="MyEventRouteButton.cs" />
+    <Compile Include="PageControl.xaml.cs">
+      <DependentUpon>PageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagingControl.xaml.cs">
       <DependentUpon>PagingControl.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
     <Compile Include="WindowAsync.xaml.cs">
       <DependentUpon>WindowAsync.xaml</DependentUpon>
     </Compile>
+    <Page Include="PageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\DataGridStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
