@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{FCF9D632-2FA
 		Lib\Microsoft.Practices.Prism.dll = Lib\Microsoft.Practices.Prism.dll
 		Lib\System.Windows.Interactivity.dll = Lib\System.Windows.Interactivity.dll
 		Lib\System.Windows.Interactivity.xml = Lib\System.Windows.Interactivity.xml
+		Lib\Transitionals.dll = Lib\Transitionals.dll
 		Lib\Xceed.Wpf.Toolkit.dll = Lib\Xceed.Wpf.Toolkit.dll
 	EndProjectSection
 EndProject

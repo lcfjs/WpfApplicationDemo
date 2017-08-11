@@ -78,6 +78,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Transitionals">
+      <HintPath>..\Lib\Transitionals.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -96,6 +99,12 @@
     <Compile Include="Comm\RelayCommand.cs" />
     <Compile Include="Comm\WindowBehaviorHelper.cs" />
     <Compile Include="ControlAttachProperty.cs" />
+    <Compile Include="FlipControl.xaml.cs">
+      <DependentUpon>FlipControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FlipWindow.xaml.cs">
+      <DependentUpon>FlipWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Loading.cs" />
     <Compile Include="MyEventRouteButton.cs" />
     <Compile Include="PageControl.xaml.cs">
@@ -114,6 +123,14 @@
     <Compile Include="WindowAsync.xaml.cs">
       <DependentUpon>WindowAsync.xaml</DependentUpon>
     </Compile>
+    <Page Include="FlipControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FlipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
