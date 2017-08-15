@@ -34,8 +34,8 @@
                                 <TextBox Width="120" Height="22"></TextBox>
                             </DockPanel>
                             <DockPanel LastChildFill="False" HorizontalAlignment="Center">
-                                
                                 <Button Width="75" Height="30" Name="btnGoBack" Click="btnGoBack_Click">GoBack</Button>
+                                <Button Width="75" Height="30" Name="btnLogin" Click="btnLogin_Click" Margin="10 0 0 0">Login</Button>
                             </DockPanel>
                         </StackPanel>
                         <Button Width="55" Height="30" Name="btnClose" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 10 0" Click="btnClose_Click">关闭</Button>

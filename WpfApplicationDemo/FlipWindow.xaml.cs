@@ -48,5 +48,12 @@ namespace WpfApplicationDemo
         {
             this.Close();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new MainWindow().ShowDialog();
+            this.Close();
+        }
     }
 }

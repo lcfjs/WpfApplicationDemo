@@ -248,6 +248,13 @@
                 </GroupBox>
             </DockPanel>
 
+            <DockPanel>
+                <StackPanel>
+                    <RadioButton>选项一</RadioButton>
+                    <RadioButton>选项二</RadioButton>
+                    <RadioButton>选项三</RadioButton>
+                </StackPanel>
+            </DockPanel>
         </StackPanel>
     </Grid>
 </Window>
