@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Style/SwitchStyle.xaml"/>
                 <ResourceDictionary Source="Style/ListBoxStyle.xaml"/>
                 <ResourceDictionary Source="Style/RadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/WpfApplicationDemo;component/Style/CheckboxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

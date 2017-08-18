@@ -254,6 +254,11 @@
                     <RadioButton>选项二</RadioButton>
                     <RadioButton>选项三</RadioButton>
                 </StackPanel>
+                <StackPanel Margin="10 0 0 0">
+                    <CheckBox IsChecked="True">选项一</CheckBox>
+                    <CheckBox Margin="0 10" IsChecked="{x:Null}">选项二</CheckBox>
+                    <CheckBox>选项三</CheckBox>
+                </StackPanel>
             </DockPanel>
         </StackPanel>
     </Grid>
