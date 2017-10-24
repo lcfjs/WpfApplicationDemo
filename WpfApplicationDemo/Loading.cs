@@ -80,6 +80,81 @@ namespace WpfApplicationDemo
             get { return (Color)GetValue(FillColorProperty); }
             set { SetValue(FillColorProperty, value); }
         }
+
+        private Grid grid = null;
+
+        public Loading(Grid grid, Action operate)
+        {
+            this.grid = grid;
+            operate?.BeginInvoke(OnComplate, null);
+        }
+        private void OnComplate(IAsyncResult ar)
+        {
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                for (int i = grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (grid.Children[i] is Loading)
+                    {
+                        grid?.Children.Remove(grid.Children[i] as Loading);
+                        break;
+                    }
+                }
+            }));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operate"></param>
+        public static void Show(Grid grid, Action operate)
+        {
+            Loading loading = new Loading(grid, operate);
+            loading.Background = new SolidColorBrush(Color.FromArgb(125, 0, 0, 0));
+            int rowCount = grid.RowDefinitions.Count > 0 ? grid.RowDefinitions.Count : 1;
+            int columnCount = grid.ColumnDefinitions.Count > 0 ? grid.ColumnDefinitions.Count : 1;
+            Grid.SetRowSpan(loading, rowCount);
+            Grid.SetColumnSpan(loading, columnCount);
+            Panel.SetZIndex(loading, 999);
+            grid.Children.Add(loading);
+
+        }
+
+        public static void Show(DependencyObject obj, Action operate)
+        {
+            var grid = GetFirstGrid(obj);
+            if (grid != null)
+            {
+                Loading loading = new Loading(grid, operate);
+                loading.Background = new SolidColorBrush(Color.FromArgb(125, 0, 0, 0));
+                int rowCount = grid.RowDefinitions.Count > 0 ? grid.RowDefinitions.Count : 1;
+                int columnCount = grid.ColumnDefinitions.Count > 0 ? grid.ColumnDefinitions.Count : 1;
+                Grid.SetRowSpan(loading, rowCount);
+                Grid.SetColumnSpan(loading, columnCount);
+                Panel.SetZIndex(loading, 999);
+                grid.Children.Add(loading);
+            }
+
+        }
+
+        private static Grid GetFirstGrid(DependencyObject obj)
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                var control = VisualTreeHelper.GetChild(obj, i) as FrameworkElement;
+                if (control is Grid)
+                {
+                    return control as Grid;
+                }
+                else
+                {
+                    var item = GetFirstGrid(control);
+                    if (item != null)
+                        return item;
+                }
+            }
+            return null;
+        }
     }
 
 }
